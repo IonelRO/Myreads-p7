@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Book from './Book';
+
 class MainPage extends Component {
 render() {
 	return(
