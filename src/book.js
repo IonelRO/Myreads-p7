@@ -1,37 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class Book extends React.Component {
-  constructor(props) {
-    super(props); //calls parents constructor
-    this.handleChange = this.handleChange.bind(this);
-
-  }
-  //Change select options
-  handleChange (event) {
-    this.props.shelfChange(this.props.book, event.target.value);
-  }
-  //take value from select list
+class Book extends Component {
 render() {
-  const emptyThumbnail = "/src/img/no-cover.png";
+ /* const emptyThumbnail = "/src/img/no-cover.png"; */
   return (
-    <li>
       <div className="book">
         <div className="book-top">
           <div className="book-cover" style={{
                width: 128,
                height: 192,
                backgroundImage: `url(
-                ${
-                  this.props.book.imageLinks
-                ? this.props.book.imageLinks.thumbnail
-                : emptyThumbnail
-                }
-               )`
-               }}></div>
+                "${
+                  this.props.book.imageLinks.thumbnail
+                }"` }}></div>
             <div className="book-shelf-changer">
-              <select value = { (this.props.book.shelf !== undefined) ?
-                this.props.book.shelf : "none"}
-                   onChange={this.handleChange}>
+              <select 
+              onChange={(event) => this.props.movebooks(
+                this.props.book, event.target.value
+                )}
+                value={this.props.shelf}
+                >
                 <option value="move" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -47,9 +35,10 @@ render() {
                    (author) => {return author + ', ';})
                  : "unavailable"}
             </div>
-      </div>
-    </li>
+      </div>     
   )}
 }
 
 export default Book
+
+/* https://stackoverflow.com/questions/28868071/onchange-event-using-react-js-for-drop-down */
