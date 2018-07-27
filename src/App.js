@@ -30,4 +30,5 @@ class BooksApp extends React.Component {
   }
 }
 
-export default BooksApp
+
+export default BooksApp;
