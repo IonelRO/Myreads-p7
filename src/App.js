@@ -1,7 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI';
 import './App.css'
-import { Router  } from 'react-router-dom';
+import { Route  } from 'react-router-dom';
 import MainPage from './MainPage';
 import SearchPage from './SearchPage';
 // import * as BooksAPI from './BooksAPI'
@@ -36,20 +36,23 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
    
-  render() {
+  
+
+render() {
     return (
       <div className="app">
-
-            {/* <MainPage
+        <Route exact path="/" render={() => (
+            <MainPage
                 books={this.state.books}
-                movebooks={this.movebooks}/>
-    */}
-    <SearchPage />
-        </div>
-    )
-  }
-}
+                movebooks={this.movebooks} />
+        )} />
 
-
+        <Route path="/search" render={() => (
+            <SearchPage
+                books={this.state.books}
+                movebooks={this.movebooks} />
+        )} />
+      </div>
+  )}}
 
 export default BooksApp;

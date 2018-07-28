@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
+
 class SearchPage extends Component {
 
  state = {
@@ -9,10 +11,10 @@ class SearchPage extends Component {
   }
   updateQuery = (query) => {
     this.setState({ query: query })
-   {/* this.updateSearchPage(query)*/}
+    this.updatefindBooks(query)
   }
 
-getfindBooks = (query) => {
+updatefindBooks = (query) => {
         //if the user types a query, look for books that match
         if (query) {
             //display books that match
@@ -37,10 +39,8 @@ render (){
 	return(
 		<div className="search-books">
             <div className="search-books-bar">
-             {/* <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-              */}
-
-
+             <Link className="close-search" to="/">Close</Link>
+              
               <div className="search-books-input-wrapper">
                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -53,7 +53,8 @@ render (){
                 <input type="text" 
                 placeholder="Search by title or author"
                 value={this.state.query}
-                onChange={(event) => this.updateQuery(event.target.value)}
+                onChange={(event) => this.updateQuery(event.
+                  target.value)}
                 />
 
               </div>
@@ -64,12 +65,11 @@ render (){
                         .map((findBooks) =>
                         <li key={findBooks.id}>
                             <Book
-                                bookID={findBooks.id}
-                                image={findBooks.imageLinks}
-                                title={findBooks.title}
-                                authors={findBooks.authors}
-                                updateShelf={this.props.updateShelf}
-                                currentShelf={findBooks.shelf = "none"}/>
+                                book={findBooks}
+                                movebooks={this.props.movebooks}
+                                shelf="none"
+
+                                />
                         </li>
                     )}
                 </ol>
