@@ -36,6 +36,13 @@ updatefindBooks = (query) => {
     }
 
 render (){
+this.state.findBooks.map((findBooks) => {
+            findBooks.shelf = "none"
+            this.props.books.map((book) => {
+                findBooks.id === book.id ? findBooks.shelf=book.shelf : ""}
+            )})
+
+  
 	return(
 		<div className="search-books">
       <div className="search-books-bar">
@@ -59,7 +66,8 @@ render (){
                       <Book
                           book={findBooks}
                           movebooks={this.props.movebooks}
-                          shelf="none"
+                          updateShelf={this.props.updateShelf}
+                          shelf={findBooks.shelf}
 
                           />
                   </li>
